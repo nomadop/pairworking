@@ -12,5 +12,6 @@ Pairworking::Application.routes.draw do
   root "pages#home"
 
   get "/home", to: "pages#home", as: "home"
-  
+  get "/find_pair", to: "pages#find_pair", as: "find_pair"
+
 end

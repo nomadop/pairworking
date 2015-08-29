@@ -2,7 +2,7 @@
 
 <h1>Listing Pairs</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Grad1</th>
@@ -12,7 +12,7 @@
       <th>Pair time</th>
       <th>Status</th>
       <th>Story</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -26,14 +26,19 @@
         <td><%= pair.pair_time %></td>
         <td><%= pair.status %></td>
         <td><%= pair.story %></td>
-        <td><%= link_to 'Show', pair %></td>
-        <td><%= link_to 'Edit', edit_pair_path(pair) %></td>
-        <td><%= link_to 'Destroy', pair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', pair, class: 'btn btn-default' %></td>
+        <td>
+          <% if pair.on_beach? %>
+          <%= link_to 'Kick Off', kick_off_pair_path(pair), class: 'btn btn-primary' %>
+          <% elsif pair.working? %>
+          <%= link_to 'Dest Check', desk_check_pair_path(pair), class: 'btn btn-success' %>
+          <% else %>
+          Waiting!
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Pair', new_pair_path %>
+<%= paginate @pairs %>

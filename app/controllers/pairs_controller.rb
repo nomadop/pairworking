@@ -3,8 +3,12 @@ class PairsController < ApplicationController
 
 
   def check_out
-    @pair.check_out
-    redirect_to :root
+    if @pair.check_out
+      redirect_to :root, notice: "Pair #{@pair.pair_name} finished the story!"
+    else
+      redirect_to :root, alert: "Failed to release the pair!"
+    end
+
   end
 
   def desk_check
@@ -12,18 +16,22 @@ class PairsController < ApplicationController
   end
 
   def kick_off
+    @avg_pair_time = Pair.average(:pair_time)
     redirect_to :root if @pair.grad1.working? || @pair.grad2.working?
   end
 
   def check_in
-    @pair.check_in(params[:story])
-    redirect_to :root
+    if @pair.check_in(params[:story])
+      redirect_to :root, notice: "Pair #{@pair.pair_name} kicked off!"
+    else
+      redirect_to :root, alert: "Failed to kicked off!"
+    end
   end
 
   # GET /pairs
   # GET /pairs.json
   def index
-    @pairs = Pair.includes(:grad1, :grad2).all
+    @pairs = Pair.includes(:grad1, :grad2).order(:pair_time).page(params[:page]).per(20)
   end
 
   # GET /pairs/1

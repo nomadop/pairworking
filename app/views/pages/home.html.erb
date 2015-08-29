@@ -1,4 +1,73 @@
 <% title("Home Page") %>
 
 <div class="row">
+  <div class="col-sm-6 panel panel-default">
+    <div class="panel-heading"><h3>Grads on beach:</h3></div>
+    <div class="row panel-body">
+      <% @grads_on_beach.each do |grad| %>
+      <div class="col-sm-4">
+        <a href="<%= grad_path(grad) %>" class="thumbnail">
+          <%= image_tag grad.photo.thumb, class: 'img-circle' %>
+          <div class="caption1">
+            <h4 class="text-center"><%= grad.name %></h4>
+          </div>
+        </a>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="col-sm-6 panel panel-default">
+    <div class="panel-heading"><h3>Pairs in working:</h3></div>
+    <div class="panel-body">
+      <table class="table">
+      <% @pairs_on_working.each do |pair| %>
+        <tr>
+            <td>
+              <a href="<%= pair_path(pair) %>" class="thumbnail">
+                <%= image_tag pair.grad1.photo.thumb, class: 'pull-left img-circle' %>
+                <%= image_tag pair.grad2.photo.thumb, class: 'pull-left img-circle' %>
+                <div class="caption1 text-center clearfix"><%= pair.pair_name %></div>
+              </a>
+            </td>
+            <td>
+              Story #<%= pair.story %> <br><br>
+              <a href="<%= desk_check_pair_path(pair) %>" class="btn btn-success">Desk Check !</a>
+            </td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Find a pair:</h1>
+  </div>
+  <div class="panel-body">
+    <form action="<%= find_pair_path %>" class="form-inline">
+      <div class="form-group">
+        <label for="my_id">I am:</label>
+        <select name="my_id" id="my_id" class="form-control">
+          <option value="0">Any Dev</option>
+          <% @grads_on_beach.each do |grad| %>
+          <option value="<%= grad.id %>"><%= grad.name %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="pair_id">I want to pair with:</label>
+        <select name="pair_id" id="pair_id" class="form-control">
+          <option value="0">Any Dev</option>
+          <% @grads_on_beach.each do |grad| %>
+          <option value="<%= grad.id %>"><%= grad.name %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Kick Off !</button>
+    </form>
+  </div>
 </div>

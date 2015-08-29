@@ -1,34 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Grad1:</strong>
-  <%= @pair.grad1_id %>
-</p>
+<div style="float: left">
+  <dt><string>Name:</string> <%= @pair.grad1.name %></dt>
+  <dt><strong>Role:</strong> <%= @pair.grad1.role %></dt>
+  <dt><strong>Photo:</strong> <%= image_tag @pair.grad1.photo %></dt>
+</div>
 
-<p>
-  <strong>Grad2:</strong>
-  <%= @pair.grad2_id %>
-</p>
+<div>
+  <dt><string>Name:</string> <%= @pair.grad2.name %></dt>
+  <dt><strong>Role:</strong> <%= @pair.grad2.role %></dt>
+  <dt><strong>Photo:</strong> <%= image_tag @pair.grad2.photo %></dt>
+</div>
 
-<p>
-  <strong>Pair name:</strong>
-  <%= @pair.pair_name %>
-</p>
-
-<p>
-  <strong>Pair time:</strong>
-  <%= @pair.pair_time %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @pair.status %>
-</p>
-
-<p>
-  <strong>Story:</strong>
-  <%= @pair.story %>
-</p>
-
-<%= link_to 'Edit', edit_pair_path(@pair) %> |
-<%= link_to 'Back', pairs_path %>
+<%= link_to 'Back', pairs_path, class: 'btn btn-default', role: 'button' %>

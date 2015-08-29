@@ -8,7 +8,7 @@
       <th>Name</th>
       <th>Role</th>
       <th>Photo</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -18,14 +18,9 @@
         <td><%= grad.name %></td>
         <td><%= grad.role %></td>
         <td><%= image_tag grad.photo.thumb %></td>
-        <td><%= link_to 'Show', grad %></td>
-        <td><%= link_to 'Edit', edit_grad_path(grad) %></td>
-        <td><%= link_to 'Destroy', grad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', grad, class: 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_grad_path(grad), class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Grad', new_grad_path %>
