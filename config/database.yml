@@ -18,3 +18,4 @@ production:
   database: pairworking
   pool: 50
   timeout: 5000
+  password: <%= ENV['PAIRWORKING_DATABASE_PASSWORD'] %>
