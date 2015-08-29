@@ -8,7 +8,14 @@ Pairworking::Application.routes.draw do
       post :check_out
     end
   end
-  resources :grads
+
+  resources :grads do
+    member do
+      post :get_away
+      post :come_back
+    end
+  end
+
   root "pages#home"
 
   get "/home", to: "pages#home", as: "home"

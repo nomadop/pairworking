@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     pair = searching_best_pair(grad1, grad2)
 
     if pair.nil?
-      redirect_to :root, alert: "There is no more grad on beach!"
+      redirect_to :root, alert: "There is no more dev on beach is active!"
     else
       redirect_to kick_off_pair_path(pair)
     end
@@ -26,16 +26,12 @@ class PagesController < ApplicationController
 
   private
   def searching_best_pair(grad1, grad2)
-    pairs = Pair.arel_table
-    devs_on_beach_ids = Grad.dev.on_beach.pluck(:id)
     if grad1.nil? && grad2.nil?
       pair = Pair.on_beach.order(:pair_time).first
     elsif grad1.nil?
-      pair = Pair.where((pairs[:grad1_id].eq(grad2.id).and(pairs[:grad2_id].in(devs_on_beach_ids)))
-                            .or(pairs[:grad2_id].eq(grad2.id).and(pairs[:grad1_id].in(devs_on_beach_ids)))).order(:pair_time).first
+      pair = grad2.find_dev_pair
     elsif grad2.nil?
-      pair = Pair.where((pairs[:grad1_id].eq(grad1.id).and(pairs[:grad2_id].in(devs_on_beach_ids)))
-                            .or(pairs[:grad2_id].eq(grad1.id).and(pairs[:grad1_id].in(devs_on_beach_ids)))).order(:pair_time).first
+      pair = grad1.find_dev_pair
     else
       pair = Pair.where(grad1: [grad1, grad2], grad2: [grad1, grad2]).take
     end

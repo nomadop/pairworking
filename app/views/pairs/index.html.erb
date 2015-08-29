@@ -5,10 +5,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Grad1</th>
-      <th>Grad2</th>
-      <th>Photos</th>
       <th>Pair name</th>
+      <th>Photos</th>
       <th>Pair time</th>
       <th>Status</th>
       <th>Story</th>
@@ -19,10 +17,10 @@
   <tbody>
     <% @pairs.each do |pair| %>
       <tr>
-        <td><%= pair.grad1_id %></td>
-        <td><%= pair.grad2_id %></td>
-        <td><%= image_tag pair.grad1.photo.small_thumb, style: 'float: left' %><%= image_tag pair.grad2.photo.small_thumb %></td>
         <td><%= pair.pair_name %></td>
+        <td>
+          <%= image_tag pair.grad1.photo.thumb, class: 'pull-left img-circle' %>
+          <%= image_tag pair.grad2.photo.thumb, class: 'pull-left img-circle' %></td>
         <td><%= pair.pair_time %></td>
         <td><%= pair.status %></td>
         <td><%= pair.story %></td>
@@ -33,7 +31,7 @@
           <% elsif pair.working? %>
           <%= link_to 'Dest Check', desk_check_pair_path(pair), class: 'btn btn-success' %>
           <% else %>
-          Waiting!
+          <button class="btn btn-default" disabled>Waiting</button>
           <% end %>
         </td>
       </tr>

@@ -1,4 +1,8 @@
-<% title("Home Page") %>
+<% title("ALL OF US") %>
+
+<div class="page-header">
+  <h1>ALL OF US <small> - TWU project pairworking</small></h1>
+</div>
 
 <div class="row">
   <div class="col-sm-6 panel panel-default">
@@ -9,7 +13,14 @@
         <a href="<%= grad_path(grad) %>" class="thumbnail">
           <%= image_tag grad.photo.thumb, class: 'img-circle' %>
           <div class="caption1">
-            <h4 class="text-center"><%= grad.name %></h4>
+            <h4 class="text-center">
+              <%= grad.name %>
+              <% if grad.active? %>
+              <span class="glyphicon glyphicon-ok"></span>
+              <% else %>
+              <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            </h4>
           </div>
         </a>
       </div>
@@ -27,7 +38,10 @@
               <a href="<%= pair_path(pair) %>" class="thumbnail">
                 <%= image_tag pair.grad1.photo.thumb, class: 'pull-left img-circle' %>
                 <%= image_tag pair.grad2.photo.thumb, class: 'pull-left img-circle' %>
-                <div class="caption1 text-center clearfix"><%= pair.pair_name %></div>
+                <div class="caption1 text-center clearfix">
+                  <br><br>
+                  <%= pair.pair_name %>
+                </div>
               </a>
             </td>
             <td>
@@ -51,7 +65,7 @@
         <label for="my_id">I am:</label>
         <select name="my_id" id="my_id" class="form-control">
           <option value="0">Any Dev</option>
-          <% @grads_on_beach.each do |grad| %>
+          <% @grads_on_beach.active.each do |grad| %>
           <option value="<%= grad.id %>"><%= grad.name %></option>
           <% end %>
         </select>
@@ -61,7 +75,7 @@
         <label for="pair_id">I want to pair with:</label>
         <select name="pair_id" id="pair_id" class="form-control">
           <option value="0">Any Dev</option>
-          <% @grads_on_beach.each do |grad| %>
+          <% @grads_on_beach.active.each do |grad| %>
           <option value="<%= grad.id %>"><%= grad.name %></option>
           <% end %>
         </select>

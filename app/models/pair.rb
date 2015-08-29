@@ -29,7 +29,7 @@ class Pair < ActiveRecord::Base
   enum status: [:on_beach, :working, :waiting]
 
   def check_in(story)
-    return false if grad1.working? || grad2.working?
+    return false if grad1.working? || grad2.working? || !grad1.active? || !grad2.active?
 
     waiting_pairs = grad1.pairs + grad2.pairs
     Pair.waiting!(waiting_pairs)
@@ -56,7 +56,7 @@ class Pair < ActiveRecord::Base
   end
 
   def set_pair_name
-    self.pair_name = "#{grad_names.max}/#{grad_names.min}"
+    self.pair_name = "#{grad_names.min}/#{grad_names.max}"
   end
 
   def check_grads

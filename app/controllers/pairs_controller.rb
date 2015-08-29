@@ -17,7 +17,7 @@ class PairsController < ApplicationController
 
   def kick_off
     @avg_pair_time = Pair.average(:pair_time)
-    redirect_to :root if @pair.grad1.working? || @pair.grad2.working?
+    redirect_to :root, alert: "Some one in this pair is inactive!" if @pair.grad1.working? || @pair.grad2.working? || !@pair.grad1.active? || !@pair.grad2.active?
   end
 
   def check_in
@@ -31,7 +31,7 @@ class PairsController < ApplicationController
   # GET /pairs
   # GET /pairs.json
   def index
-    @pairs = Pair.includes(:grad1, :grad2).order(:pair_time).page(params[:page]).per(20)
+    @pairs = Pair.includes(:grad1, :grad2).order(:pair_time).page(params[:page]).per(10)
   end
 
   # GET /pairs/1
@@ -66,27 +66,27 @@ class PairsController < ApplicationController
 
   # PATCH/PUT /pairs/1
   # PATCH/PUT /pairs/1.json
-  def update
-    respond_to do |format|
-      if @pair.update(pair_params)
-        format.html { redirect_to @pair, notice: 'Pair was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pair }
-      else
-        format.html { render :edit }
-        format.json { render json: @pair.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @pair.update(pair_params)
+  #       format.html { redirect_to @pair, notice: 'Pair was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @pair }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @pair.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /pairs/1
   # DELETE /pairs/1.json
-  def destroy
-    @pair.destroy
-    respond_to do |format|
-      format.html { redirect_to pairs_url, notice: 'Pair was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @pair.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to pairs_url, notice: 'Pair was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
