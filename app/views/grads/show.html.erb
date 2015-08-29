@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @grad.name %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @grad.role %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @grad.photo %>
+  <%= image_tag @grad.photo.thumb %>
+  <%= image_tag @grad.photo.small_thumb %>
+</p>
+
+<%= link_to 'Edit', edit_grad_path(@grad) %> |
+<%= link_to 'Back', grads_path %>

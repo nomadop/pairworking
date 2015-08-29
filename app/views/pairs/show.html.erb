@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Grad1:</strong>
+  <%= @pair.grad1_id %>
+</p>
+
+<p>
+  <strong>Grad2:</strong>
+  <%= @pair.grad2_id %>
+</p>
+
+<p>
+  <strong>Pair name:</strong>
+  <%= @pair.pair_name %>
+</p>
+
+<p>
+  <strong>Pair time:</strong>
+  <%= @pair.pair_time %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @pair.status %>
+</p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @pair.story %>
+</p>
+
+<%= link_to 'Edit', edit_pair_path(@pair) %> |
+<%= link_to 'Back', pairs_path %>

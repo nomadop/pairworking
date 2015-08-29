@@ -60,6 +60,8 @@ group :production do
 end
 
 # Unicorn: http://unicorn.bogomips.org
-group :production do
-  gem 'unicorn'
-end
+gem 'unicorn'
+
+gem 'carrierwave'
+
+gem 'mini_magick'

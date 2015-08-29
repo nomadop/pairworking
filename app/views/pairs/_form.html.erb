@@ -1,0 +1,41 @@
+<%= form_for(@pair) do |f| %>
+  <% if @pair.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pair.errors.count, "error") %> prohibited this pair from being saved:</h2>
+
+      <ul>
+      <% @pair.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :grad1_id %><br>
+    <%= f.number_field :grad1_id %>
+  </div>
+  <div class="field">
+    <%= f.label :grad2_id %><br>
+    <%= f.number_field :grad2_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pair_name %><br>
+    <%= f.text_field :pair_name %>
+  </div>
+  <div class="field">
+    <%= f.label :pair_time %><br>
+    <%= f.number_field :pair_time %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :story %><br>
+    <%= f.number_field :story %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

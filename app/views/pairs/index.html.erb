@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pairs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grad1</th>
+      <th>Grad2</th>
+      <th>Photos</th>
+      <th>Pair name</th>
+      <th>Pair time</th>
+      <th>Status</th>
+      <th>Story</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pairs.each do |pair| %>
+      <tr>
+        <td><%= pair.grad1_id %></td>
+        <td><%= pair.grad2_id %></td>
+        <td><%= image_tag pair.grad1.photo.small_thumb, style: 'float: left' %><%= image_tag pair.grad2.photo.small_thumb %></td>
+        <td><%= pair.pair_name %></td>
+        <td><%= pair.pair_time %></td>
+        <td><%= pair.status %></td>
+        <td><%= pair.story %></td>
+        <td><%= link_to 'Show', pair %></td>
+        <td><%= link_to 'Edit', edit_pair_path(pair) %></td>
+        <td><%= link_to 'Destroy', pair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pair', new_pair_path %>

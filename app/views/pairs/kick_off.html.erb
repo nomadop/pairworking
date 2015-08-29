@@ -1,0 +1,22 @@
+<div style="float: left">
+  <dt><string>Name:</string> <%= @pair.grad1.name %></dt>
+  <dt><strong>Role:</strong> <%= @pair.grad1.role %></dt>
+  <dt><strong>Photo:</strong> <%= image_tag @pair.grad1.photo %></dt>
+</div>
+
+<div>
+  <dt><string>Name:</string> <%= @pair.grad2.name %></dt>
+  <dt><strong>Role:</strong> <%= @pair.grad2.role %></dt>
+  <dt><strong>Photo:</strong> <%= image_tag @pair.grad2.photo %></dt>
+</div>
+
+<%= form_tag(check_in_pair_path(@pair)) do %>
+    <div class="field">
+        <%= label_tag :story, "Story" %> <br>
+        <%= text_field_tag :story %>
+    </div>
+
+    <div class="actions">
+        <%= submit_tag "Accept" %>
+    </div>
+<% end %>

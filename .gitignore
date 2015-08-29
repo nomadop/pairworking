@@ -8,6 +8,7 @@
 
 # Ignore the bundle directory itself.
 /vendor/bundle
+/public/uploads
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -19,6 +20,7 @@
 
 # Ignore other unneeded files.
 doc/
+db/schema.rb
 *.swp
 *~
 .project

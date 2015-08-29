@@ -4,3 +4,6 @@
  *= require_self
  */
 @import "railsbricks_custom";
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
